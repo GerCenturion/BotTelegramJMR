@@ -9,7 +9,8 @@ const {
   MONGODB_URI,
   TELEGRAM_API_TOKEN,
   AZURE_STORAGE_CONNECTION_STRING,
-  AZURE_STORAGE_CONTAINER_NAME,
+  AZURE_STORAGE_CONTAINER_DEVOCIONAL,
+  AZURE_STORAGE_CONTAINER_VIDEO,
 } = process.env;
 
 mongoose.connect(MONGODB_URI, {
@@ -23,14 +24,18 @@ const devocionalSchema = new mongoose.Schema({
   fecha: { type: Date, default: Date.now },
 });
 
-const Devocional = mongoose.model("Devocional", devocionalSchema);
+// Importa el modelo de video directamente
+const Video = require("./models/video");
 
 const connectionString = AZURE_STORAGE_CONNECTION_STRING;
-const containerName = AZURE_STORAGE_CONTAINER_NAME;
 
-const blobServiceClient =
-  BlobServiceClient.fromConnectionString(connectionString);
-const containerClient = blobServiceClient.getContainerClient(containerName);
+const containerClientDevocional = BlobServiceClient.fromConnectionString(
+  connectionString
+).getContainerClient(AZURE_STORAGE_CONTAINER_DEVOCIONAL);
+
+const containerClientVideo = BlobServiceClient.fromConnectionString(
+  connectionString
+).getContainerClient(AZURE_STORAGE_CONTAINER_VIDEO);
 
 const bot = new Telegraf(TELEGRAM_API_TOKEN);
 
@@ -39,10 +44,12 @@ let mensajesGuardados = [];
 // Importar módulos
 const welcomeModule = require("./modules/welcome");
 const devotionalModule = require("./modules/devotional");
+const videoModule = require("./modules/video");
 
 // Usar módulos
 welcomeModule(bot);
-devotionalModule(bot, mensajesGuardados, containerClient); // Asegúrate de pasar containerClient aquí
+devotionalModule(bot, mensajesGuardados, containerClientDevocional);
+videoModule(bot, mensajesGuardados, containerClientVideo);
 
 // Iniciar el bot
 bot.launch();

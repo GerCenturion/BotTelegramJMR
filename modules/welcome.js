@@ -29,7 +29,17 @@ module.exports = (bot, mensajesGuardados) => {
   });
 
   bot.action("video", (ctx) => {
-    ctx.reply("Lo siento, la opción de video aún no está implementada.");
+    ctx.reply(
+      "¡Excelente elección! Por favor, envía el video para su procesamiento.",
+      {
+        reply_markup: {
+          inline_keyboard: [[{ text: "Cancelar", callback_data: "cancelar" }]],
+        },
+      }
+    );
+
+    // Limpiar mensajes guardados al iniciar un nuevo video
+    mensajesGuardados = [];
   });
 
   bot.action("notificaciones", (ctx) => {
