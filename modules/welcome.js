@@ -2,7 +2,7 @@
 module.exports = (bot, mensajesGuardados) => {
   // Manejador de /start para mostrar un mensaje de bienvenida
   bot.start((ctx) => {
-    const welcomeMessage = "¡Bienvenido a este bot! ¿Cómo puedo ayudarte hoy?";
+    const welcomeMessage = "¡Hola soy el asistente de contenidos! ¿Que vas a publicar?";
     ctx.reply(welcomeMessage, {
       reply_markup: {
         inline_keyboard: [
@@ -30,7 +30,7 @@ module.exports = (bot, mensajesGuardados) => {
 
   bot.action("video", (ctx) => {
     ctx.reply(
-      "¡Excelente elección! Por favor, envía el video para su procesamiento.",
+      "¡Excelente! Por favor, envía el video para su procesamiento.",
       {
         reply_markup: {
           inline_keyboard: [[{ text: "Cancelar", callback_data: "cancelar" }]],
