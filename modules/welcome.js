@@ -2,7 +2,8 @@
 module.exports = (bot, mensajesGuardados) => {
   // Manejador de /start para mostrar un mensaje de bienvenida
   bot.start((ctx) => {
-    const welcomeMessage = "¡Hola soy JMRbot!  ¿Que vas a publicar?";
+    const welcomeMessage = "Hola soy JMRbot, tu asistente de contenidos  ¿Que vas a publicar?";
+
     ctx.reply(welcomeMessage, {
       reply_markup: {
         inline_keyboard: [
