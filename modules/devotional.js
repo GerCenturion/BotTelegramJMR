@@ -3,7 +3,7 @@ const Telegraf = require("telegraf");
 const Markup = Telegraf.Markup;
 const https = require("https");
 const mongoose = require("mongoose");
-let Devocional = require("../models/devocional"); // Usa let en lugar de const
+let Devocional = require("../models/devocional");
 
 module.exports = (bot, mensajesGuardados, containerClient) => {
   // Manejador de foto

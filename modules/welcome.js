@@ -2,7 +2,7 @@
 module.exports = (bot, mensajesGuardados) => {
   // Manejador de /start para mostrar un mensaje de bienvenida
   bot.start((ctx) => {
-    const welcomeMessage = "¡Bienvenido a este bot! ¿Cómo puedo ayudarte hoy?";
+    const welcomeMessage = "¡Hola soy JMRbot!  ¿Que vas a publicar?";
     ctx.reply(welcomeMessage, {
       reply_markup: {
         inline_keyboard: [
@@ -18,7 +18,7 @@ module.exports = (bot, mensajesGuardados) => {
 
   // Manejador de opciones de bienvenida
   bot.action("devocional", (ctx) => {
-    ctx.reply("¡Perfecto! Por favor, envía una foto para el devocional.", {
+    ctx.reply("Por favor, envía una foto para el devocional.", {
       reply_markup: {
         inline_keyboard: [[{ text: "Cancelar", callback_data: "cancelar" }]],
       },
@@ -30,7 +30,7 @@ module.exports = (bot, mensajesGuardados) => {
 
   bot.action("video", (ctx) => {
     ctx.reply(
-      "¡Excelente elección! Por favor, envía el video para su procesamiento.",
+      "Por favor, envía el video para su procesamiento en formato mp4.",
       {
         reply_markup: {
           inline_keyboard: [[{ text: "Cancelar", callback_data: "cancelar" }]],
@@ -44,7 +44,7 @@ module.exports = (bot, mensajesGuardados) => {
 
   bot.action("notificaciones", (ctx) => {
     ctx.reply(
-      "Lo siento, la opción de notificaciones aún no está implementada."
+      "Lo siento, la opción de notificaciones aún no está implementada. Decile a Gerson que se apure."
     );
   });
 };
